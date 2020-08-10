@@ -3,34 +3,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const app = express();
 
+const app = express();
+app.use(bodyParser.urlencoded({extended:true}));
+var items = [];
 app.set('view engine', 'ejs'); // this line should be below ------  const app = express();
 
 app.get("/", function(req, res){
     
     var today = new Date();
-    var current_day = today.getDay();
-    var day = "";
-    switch (current_day){
-        case 1:
-            day = "Monday"; break;
-        case 2:
-            day = "Tuesday"; break;
-        case 3:
-            day = "Wednesday"; break;
-        case 4:
-            day = "Thursday"; break;
-        case 5:
-            day = "Friday"; break;
-        case 6:
-            day = "Saturday"; break;
-        case 0:
-            day = "Sunday"; break;
-        default:
-            console.log("Error how did this" + current_day + "occur");
-    }
-    res.render("list", {kindofday:day});
+    var options = {
+        weekday : "long",
+        day : "numeric",
+        month : "long"
+    };
+    var day = today.toLocaleDateString("en-US", options)   //en -us is for english and options to format to our preferance
+    res.render("list", {kindofday:day, newListItem:items});
     // ejs template is <%= variable_name%>
     // key has to match with exactly the name used in ejs file
         // this line says we render the page  list.ejs and we pass the day to the rjs file 
@@ -41,6 +29,11 @@ app.get("/", function(req, res){
     
 });
 
+app.post("/", function(req, res){
+    var item = req.body.newItem;
+    items.push(item);
+    res.redirect("/");// we add the newLsitItem in app.render in the app.get after saving the data from the website we redirect to the home website where the newListItem gets sent
+});
 
 
 app.listen(3000, function(){

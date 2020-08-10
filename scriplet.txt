@@ -1,0 +1,8 @@
+<% if(kindofday === "Saturday" || kindofday === "Sunday") { %>
+        <h1 style="color: red"><%= kindofday %> to-do list</h1>
+    
+    <%} else {%>
+        <h1 style="color: saddlebrown"><%= kindofday %> to-do list</h1>
+        <% } %>
+
+here this is the format to use scriplet
