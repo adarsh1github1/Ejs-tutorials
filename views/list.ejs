@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to do list</title>
-    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="CSS/styles.css"> <!--whenever we add style to a css folder it is ignored by express , as only the app.js and views folder are used by express rest all are ignored so we need to serve the stylesheet through app,js -->
-    <!-- so it is general convention to inorder to serve files like html , css , js which are ignored by express we create public folder which we can serve up in app.js-->
-</head>
+<%- include("header") -%>
+<!--this is a layout  - it helps to keep basic styles that we need to keep consistent across all pages-->
 <body>
       <!-- here before we need to send the current day to complete the code to do this we add a ejs marker-->
     <!-- we use 'Scriptlet' tag, for control-flow, no output     ..i.e add if else statements in the ejs file-->
@@ -32,7 +24,4 @@
                 </form>
     </div>
 
-
-
-</body>
-</html>
+<%- include("footer") -%>
